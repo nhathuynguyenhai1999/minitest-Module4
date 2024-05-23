@@ -2,10 +2,12 @@ package cg.codegym.minitest.Controller;
 
 import cg.codegym.minitest.Model.Computer;
 import cg.codegym.minitest.Model.Type;
+import cg.codegym.minitest.Service.iml.ComputerService;
 import cg.codegym.minitest.Service.iml.IComputerService;
 import cg.codegym.minitest.Service.iml.ITypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -26,20 +28,25 @@ public class ComputerController {
     @Autowired
     private ITypeService typeService;
 
+    public ComputerController(ComputerService computerService) {
+        this.computerService = computerService;
+    }
+
     @ModelAttribute("types")
-    public Iterable<Type> listProvinces() {
+    public Iterable<Type> listTypes() {
         return typeService.findAll();
     }
 
     @GetMapping
-    public ModelAndView listCustomer(Pageable pageable) {
+    public ModelAndView listComputer(@RequestParam(defaultValue = "0") int page) {
+        Pageable pageable = PageRequest.of(page,3);
         Page<Computer> customers = computerService.findAll(pageable);
         ModelAndView modelAndView = new ModelAndView("/computer/list");
         modelAndView.addObject("computers", customers);
         return modelAndView;
     }
     @GetMapping("/search")
-    public ModelAndView listCustomersSearch(@RequestParam("search") Optional<String> search, Pageable pageable){
+    public ModelAndView listComputersSearch(@RequestParam("search") Optional<String> search, Pageable pageable){
         Page<Computer> customers;
         if(search.isPresent()){
             customers = computerService.findAllByNameContaining(pageable, search.get());
