@@ -3,10 +3,13 @@ package cg.codegym.minitest.Model;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
+import java.util.HashMap;
+import java.util.Map;
 
 @Entity
 @Table(name = "computer")
 public class Computer {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
