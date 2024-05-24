@@ -32,6 +32,14 @@ public class ComputerSessionCookieController {
                             @ModelAttribute ComputerSessionCookie computerSessionCookie,
                             @RequestParam("action") String action) {
         Optional<Computer> computerSessionCookieOptional = computerService.findById(id);
-        if
+        if(!computerSessionCookieOptional.isPresent()){
+            return "/error_404";
+        }
+        if(action.equals("show")){
+            computerSessionCookie.addComputer(computerSessionCookieOptional.get());
+            return null;
+        }
+        computerSessionCookie.addComputer(computerSessionCookieOptional.get());
+        return "redirect:/computer/list1";
     }
 }
