@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>
+    <a href="/computers1/shop"></a>
+</p>
+<h1>Your Cart</h1>
+<form th:action="@{/computers1/shopping-cart}" th:object="${carts}" method="post">
+    <h3>Total items: <span th:text="${carts.countItemQuantity()}"></span></h3>
+    <h3>Total Products: <span th:text="${carts.countItemProductQuantity()}"></span></h3>
+    <table border="1">
+        <tr>
+            <td>STT</td>
+            <td>Name</td>
+            <td>Code</td>
+            <td>Type</td>
+        </tr>
+        <th:block th:each="product:${carts.computers11}">
+            <td th:text="${product.getId()}"></td>
+            <td th:text="${product.getName()}"></td>
+            <td th:text="${product.getCode()}"></td>
+            <td th:text="${product.getType.getName()}"></td>
+            <td th:text="@{/computers1/add/__${product.getId()}__(action='/computer/list1')}"></td>
+        </th:block>
+    </table>
+</form>
+</body>
+</html>

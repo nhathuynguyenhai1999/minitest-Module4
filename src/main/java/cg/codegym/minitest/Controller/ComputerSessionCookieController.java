@@ -11,20 +11,26 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/computers")
-@SessionAttributes("cart")
+@RequestMapping("/computers1")
+@SessionAttributes("carts")
 public class ComputerSessionCookieController {
     @Autowired
     private IComputerService computerService;
 
-    @ModelAttribute("cart")
+    @ModelAttribute("carts")
     public ComputerSessionCookieController setupCart(){
         return new ComputerSessionCookieController();
     }
     @GetMapping("/shop")
     public ModelAndView showListComputerCart(){
         ModelAndView modelAndView = new ModelAndView("/computer/list1");
-        modelAndView.addObject("computers", computerService.findAll());
+        modelAndView.addObject("computers11", computerService.findAll());
+        return modelAndView;
+    }
+    @GetMapping("/shopping-cart")
+    public ModelAndView showCart (@SessionAttribute("carts") Computer cart){
+        ModelAndView modelAndView = new ModelAndView("/computer/cart");
+        modelAndView.addObject("carts",cart);
         return modelAndView;
     }
     @GetMapping("/add/{id}")
