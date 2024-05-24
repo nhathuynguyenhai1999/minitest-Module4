@@ -1,6 +1,8 @@
 package cg.codegym.minitest.Model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "type")
@@ -8,9 +10,8 @@ public class Type {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
-
+    @NotEmpty(message = "Code không được để trống")
     private String name;
-
     public Type() {
     }
 

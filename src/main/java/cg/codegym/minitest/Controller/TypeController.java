@@ -6,10 +6,12 @@ import cg.codegym.minitest.Service.iml.IComputerService;
 import cg.codegym.minitest.Service.iml.ITypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.util.Optional;
 
 @Controller
@@ -40,11 +42,17 @@ public class TypeController {
     }
 
     @PostMapping("/create")
-    public String create(@ModelAttribute("type") Type province,
-                         RedirectAttributes redirectAttributes) {
+    public ModelAndView create(@Valid @ModelAttribute("type") Type province,
+                               BindingResult bindingResult,
+                               RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasErrors()) {
+         ModelAndView modelAndView = new ModelAndView("/type/create");
+         modelAndView.addObject("type", province);
+         return modelAndView;
+        }
         typeService.save(province);
         redirectAttributes.addFlashAttribute("message", "Create new province successfully");
-        return "redirect:/types";
+        return new ModelAndView("redirect:/types");
     }
 
     @GetMapping("/update/{id}")
