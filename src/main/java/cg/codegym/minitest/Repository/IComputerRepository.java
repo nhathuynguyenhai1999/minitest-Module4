@@ -13,4 +13,5 @@ public interface IComputerRepository extends CrudRepository<Computer,Long> {
 
     Page<Computer> findAllByNameContaining(Pageable pageable, String name);
 
+    boolean existsByCode(String code);
 }
