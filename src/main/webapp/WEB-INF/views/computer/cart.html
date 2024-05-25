@@ -19,7 +19,7 @@
             <td>Code</td>
             <td>Type</td>
         </tr>
-        <th:block th:each="product:${carts.computers11}">
+        <th:block th:each="product,pStatus:${carts.computers11}">
             <td th:text="${product.getId()}"></td>
             <td th:text="${product.getName()}"></td>
             <td th:text="${product.getCode()}"></td>
