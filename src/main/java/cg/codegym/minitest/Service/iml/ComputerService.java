@@ -24,11 +24,11 @@ public class ComputerService implements IComputerService {
     }
 
     @Override
-    public void save(Computer customer) {
+    public Computer save(Computer customer) {
         if (iComputerRepository.existsByCode(customer.getCode())) {
             throw new DuplicateProductCodeException("Product code already exists: " + customer.getCode());
         }
-        iComputerRepository.save(customer);
+        return iComputerRepository.save(customer);
     }
 
     @Override
