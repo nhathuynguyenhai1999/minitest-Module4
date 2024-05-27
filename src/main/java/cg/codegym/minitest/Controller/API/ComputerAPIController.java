@@ -29,10 +29,7 @@ public class ComputerAPIController {
     @GetMapping("/{id}")
     public ResponseEntity<Computer> findById(@PathVariable Long id) {
         Optional<Computer> computerOptional = computerService.findById(id);
-        if (!computerOptional.isPresent()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(computerOptional.get(), HttpStatus.OK);
+        return computerOptional.map(computer -> new ResponseEntity<>(computer, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping
