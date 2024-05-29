@@ -16,9 +16,15 @@
         <label for="code">Code:</label>
         <input type="text" id="code" name="code"><br><br>
         <label for="type">Type:</label>
-        <input type="text" id="type" name="type"><br><br>
-        <button type="submit">Add Customer</button>
-        <button onclick="backtoListCustomers()">Back</button>
+<!--        <input type="text" id="type" name="type"><br><br>-->
+        <select id="type" name="types">
+<!--            <option value="volvo">Volvo XC90</option>-->
+<!--            <option value="saab">Saab 95</option>-->
+<!--            <option value="mercedes">Mercedes SLK</option>-->
+<!--            <option value="audi">Audi TT</option>-->
+        </select>
+        <button type="submit" onclick="addNewCustomer()">Add Customer</button>
+        <button onclick="backtoListCustomers()" id="back">Back</button>
     </form>
 </div>
 <div id="edit-customers" style="display:none;">

@@ -26,7 +26,7 @@ $.ajax({
 });
 
 function getProduct(customer) {
-    return `<tr><td >${customer.id}</td><td >${customer.name}</td><td >${customer.code}</td><td >${customer.type}</td>` +
+    return `<tr><td >${customer.id}</td><td >${customer.name}</td><td >${customer.code}</td><td >${customer.type.name}</td>` +
         `<td class="btn"><button class="deleteSmartphone" onclick="deleteCustomers(${customer.id})">Delete</button></td>
         <td class="btn"><button class="editSmartphone" onclick="formEditCustomers(${customer.id})">Edit</button></td></tr>`;
 }
@@ -116,7 +116,7 @@ function formEditCustomers(){
         contentData += getComputerCustomerById(data);
         contentData+='</table>\n' +
             '</form>'
-        document.getElementById('editCustomer-1').innerHTML = content;
+        document.getElementById('edit-customer-1').innerHTML = content;
         document.getElementById('fuckingList').innerHTML = "none";
         document.getElementById('add-customers').style.display = "block";
         document.getElementById('display-create').style.display = "none";
@@ -134,7 +134,7 @@ function getComputerCustomerById(){
         </tr>
         <tr>
             <td><label for="type">Type:</label></td>
-            <td><input type="text" id="type-edit" value="${customers.type}"></td>
+            <td><input type="text" id="type-edit" value="${customers.type.name}"></td>
         </tr>
         <tr>
             <td></td>
