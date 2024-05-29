@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+    <title>Jquery and Ajax | Nhật Huy Chaien Nguyễn | Java Web Backend Developement</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <h1 id="title">Show List Tecnology product</h1>
+    <div id="fuckingList"></div>
+    <form id="add-customers">
+        <table id="customers">
+            <tr>
+                <td><label for="code">Code</label></td>
+                <td><input type="text" id="code" placeholder="code"></td>
+            </tr>
+            <tr>
+                <td><label for="name">Name</label></td>
+                <td><input type="text" id="name" placeholder="name"></td>
+            </tr>
+            <tr>
+                <td><label for="type">Type</label></td>
+                <td><input type="text" id="type" placeholder="type"></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Add" onclick="addNewCustomers()"></td>
+                <td><input type="submit" value="Cancel" onclick="backtoListCustomers()"></td>
+            </tr>
+        </table>
+    </form>
+    <div id="edit-customers"></div>
+    <div id="div-btn">
+        <button onclick="displayFormCreate()" id="display-create">Create new Customer for Product</button>
+    </div>
+</body>
+</html>

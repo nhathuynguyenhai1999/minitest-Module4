@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin("http://localhost:63343")
 @RequestMapping("/api/computers")
 public class ComputerAPIController {
 
