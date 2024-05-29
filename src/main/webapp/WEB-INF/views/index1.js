@@ -117,7 +117,9 @@ function updateCustomer(event, id) {
     let name = $('#name-edit').val();
     let code = $('#code-edit').val();
     let type = $('#type-edit').val();
-    let updatedCustomer = { name: name, code: code, type: type };
+    let updatedCustomer = { "code": code, "name":  name, "type": {
+            "id": type
+        } };
 
     $.ajax({
         headers: {

@@ -1,163 +1,195 @@
-$.ajax({
-    type: "GET",
-    //tên API
-    url: "http://localhost:8080/api/computers",
-    //xử lý khi thành công
-    success: function (data) {
-        // hiển thị danh sách ở đây
-        let content = '    <table id="display-list"  border="1"><tr>\n' +
-            '        <th>Name</td>\n' +
-            '        <th>Code</td>\n' +
-            '        <th>Type</td>\n' +
-            '        <th>Update</td>\n' +
-            '        <th>Delete</td>\n' +
-            '    </tr>';
-        for (let i = 0; i < data.length; i++) {
-            content += getProduct(data[i]);
-        }
-        content += "</table>"
-        document.getElementById('fuckingList').innerHTML = content;
-        document.getElementById('fuckingList').style.display = "block";
-        document.getElementById('add-customers').style.display = "none";
-        document.getElementById('edit-customer-1').style.display= "none";
-        document.getElementById('display-create').style.display = "block";
-        document.getElementById('title').style.display = "block";
-    }
+$(document).ready(function() {
+    loadCustomers();
+    loadTypes();
 });
 
-function getProduct(customer) {
-    return `<tr><td >${customer.id}</td><td >${customer.name}</td><td >${customer.code}</td><td >${customer.type.name}</td>` +
-        `<td class="btn"><button class="deleteSmartphone" onclick="deleteCustomers(${customer.id})">Delete</button></td>
-        <td class="btn"><button class="editSmartphone" onclick="formEditCustomers(${customer.id})">Edit</button></td></tr>`;
+function loadCustomers() {
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:8080/api/computers",
+        success: function(data) {
+            let content = '<table id="display-list" border="1"><tr>' +
+                '<th>Name</th>' +
+                '<th>Code</th>' +
+                '<th>Type</th>' +
+                '<th>Update</th>' +
+                '<th>Delete</th>' +
+                '</tr>';
+            for (let i = 0; i < data.length; i++) {
+                content += getProduct(data[i]);
+            }
+            content += "</table>";
+            $('#fuckingList').html(content).show();
+            $('#add-customers').hide();
+            $('#display-create').show();
+            $('#edit-customers').show();
+            $('#title').show();
+        }
+    });
 }
 
-function addNewCustomers() {
-    //lấy dữ liệu từ form html
+function loadTypes() {
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:8080/api/types",
+        success: function(data) {
+            // Create a select element
+            const selectElement = document.createElement('select');
+            selectElement.id = 'type';
+            selectElement.name = 'type';
+
+            // Populate the select element with options
+            for (let i = 0; i < data.length; i++) {
+                const optionElement = document.createElement('option');
+                optionElement.value = data[i].id; // Assuming 'id' is the value you want to use
+                optionElement.textContent = data[i].name; // Assuming 'name' is the text you want to show
+                selectElement.appendChild(optionElement);
+            }
+
+            // Get the input element
+            const inputElement = document.getElementById('type');
+
+            // Replace the input element with the select element
+            inputElement.parentNode.replaceChild(selectElement, inputElement);
+        },
+        error: function(error) {
+            console.error('Error fetching the options from the API:', error);
+        }
+    });
+}
+
+// Call the function to update the input to select
+loadTypes();
+
+function getProduct(customer) {
+    return `<tr>
+        <td>${customer.name}</td>
+        <td>${customer.code}</td>
+        <td>${customer.type.name}</td>
+        <td><button class="updateSmartphone" onclick="formEdit(${customer.id})">Update</button></td>
+        <td><button class="deleteSmartphone" onclick="deleteCustomer(${customer.id})">Delete</button></td>
+    </tr>`;
+}
+
+function addNewCustomer(event) {
+    // event.preventDefault();
     let name = $('#name').val();
     let code = $('#code').val();
-    let type = $('#type').val();
-    let newSmartphone = {
-        name: name,
-        code: code,
-        type: type
-    };
-    // gọi phương thức ajax
+    let typeId = $('#type').val();
+    let newCustomer = { "code": code, "name":  name, "type": {
+            "id": typeId
+        } };
+
     $.ajax({
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
         type: "POST",
-        data: JSON.stringify(newSmartphone),
-        //tên API
         url: "http://localhost:8080/api/computers",
-        //xử lý khi thành công
+        data: JSON.stringify(newCustomer),
         success: successHandler
-
     });
-    //chặn sự kiện mặc định của thẻ
-    event.preventDefault();
 }
+
 function successHandler() {
-    // Gọi lại API để lấy danh sách khách hàng mới nhất
-    $.ajax({
-        type: "GET",
-        // Tên API
-        url: "http://localhost:8080/api/computers",
-        // Xử lý khi thành công
-        success: function (data) {
-            // Hiển thị danh sách ở đây
-            let content = '<table id="display-list" border="1"><tr>' +
-                '    <th>Name</th>' +
-                '    <th>Code</th>' +
-                '    <th>Type</th>' +
-                '    <th>Update</th>' +
-                '    <th>Delete</th>' +
-                '</tr>';
-            for (let i = 0; i < data.length; i++) {
-                content += getProduct(data[i]);
-            }
-            content += "</table>";
-            document.getElementById('fuckingList').innerHTML = content;
-            document.getElementById('fuckingList').style.display = "block";
-            document.getElementById('add-customers').style.display = "none";
-            document.getElementById('display-create').style.display = "block";
-            document.getElementById('title').style.display = "block";
-        }
-    });
+    loadCustomers();
 }
 
-function displayFormCreate(){
-    document.getElementById('title').style.display = "block";
-    document.getElementById("fuckingList").style.display = "none";
-    document.getElementById('add-customers').style.display = "block";
-    document.getElementById('display-create').style.display = "none";
+function displayFormCreate() {
+    $('#title').show();
+    $('#fuckingList').hide();
+    $('#add-customers').show();
+    $('#display-create').hide();
+    $('#edit-customers').hide();
 }
-function deleteCustomers(buttonElement){
-    var id = $(buttonElement).data("id");
+
+function deleteCustomer(id) {
     $.ajax({
         type: "DELETE",
-        //tên API
-        url: "http://localhost:8080/api/computers/${id}",
-        //xử lý khi thành công
+        url: `http://localhost:8080/api/computers/${id}`,
         success: successHandler
     });
 }
-function backtoListCustomers(){
-    window.location.href = 'Ajax.html';
-}
-function formEditCustomers(){
-    $.ajax({type: "GET",
-        url: "http://localhost:8080/api/computers/${id}",
-        success: function (data) {
-        let content = '<table id="display-list" border="1"><tr>' +
-            '    <h1>Form edit</h1>\n' +
-            '    <table>\n';
-        contentData += getComputerCustomerById(data);
-        contentData+='</table>\n' +
-            '</form>'
-        document.getElementById('edit-customer-1').innerHTML = content;
-        document.getElementById('fuckingList').innerHTML = "none";
-        document.getElementById('add-customers').style.display = "block";
-        document.getElementById('display-create').style.display = "none";
-    }
-    })
-}
-function getComputerCustomerById(){
-    return`<tr>
-            <td><label for="name">Name:</label></td>
-            <td><input type="text" id="name-edit" value="${customers.name}"></td>
-        </tr>
-        <tr>
-            <td><label for="model">Code:</label></td>
-            <td><input type="text" id="code-edit" value="${customers.code}"></td>
-        </tr>
-        <tr>
-            <td><label for="type">Type:</label></td>
-            <td><input type="text" id="type-edit" value="${customers.type.name}"></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td><input type="submit" value="Edit" onclick="editCustomers(${customers.id})"></td>
-        </tr>`
-}
-function editCustomers(){
+
+function updateCustomer(event, id) {
     event.preventDefault();
-    let name = document.getElementById("name-edit").value;
-    let code = document.getElementById("code-edit").value;
-    let type = document.getElementById("type-edit").value;
-    let newCustomerForProduct = {
-            "name" : name,
-            "code" : code,
-            "type" : type
-    };
+    let name = $('#name-edit').val();
+    let code = $('#code-edit').val();
+    let type = $('#type-edit').val();
+    let updatedCustomer = { name: name, code: code, type: type };
+
     $.ajax({
         headers: {
             'Accept': 'application/json',
-            'Content - type' : 'application/json'
+            'Content-Type': 'application/json'
         },
-        type : 'PUT',
-        url : `http://localhost:8080/api/computers/${id}`,
+        type: "PUT",
+        url: `http://localhost:8080/api/computers/${id}`,
+        data: JSON.stringify(updatedCustomer),
         success: successHandler
-    })
+    });
+}
+
+function getCustomerById(customer) {
+    return `<tr>
+            <td><label for="name-edit">Name:</label></td>
+            <td><input type="text" id="name-edit" value="${customer.name}"></td>
+        </tr>
+        <tr>
+            <td><label for="code-edit">Code:</label></td>
+            <td><input type="text" id="code-edit" value="${customer.code}"></td>
+        </tr>
+        <tr>
+            <td><label for="type">Type:</label></td>
+            <td><select id="type-edit" name="types"></select></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Edit"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Cancel" id="back" onclick="backtoListCustomers()"></td>        
+        </tr>`;
+}
+
+function formEdit(id) {
+    $.ajax({
+        type: "GET",
+        url: `http://localhost:8080/api/computers/${id}`,
+        success: function(data) {
+
+            let contentData = '<form id="edit-customer" onsubmit="updateCustomer(event, ' + id + ')">' +
+                '<h1>Form edit</h1>' +
+                '<table>';
+            contentData += getCustomerById(data);
+            contentData += '</table></form>';
+            $('#edit-customer-1').html(contentData);
+            $('#fuckingList').hide();
+            $('#add-customers').hide();
+            $('#display-create').hide();
+            $('#title').hide();
+            $('#edit-customers').show();
+
+            $.ajax({
+                    type: "GET",
+                    url: "http://localhost:8080/api/types",
+                    success: function (types) {
+                        let htmlOptions = types.map((type)=>{
+                            return `
+                                <option value="${type.id}" ${data.type.id === type.id ? "selected" : ""}>${type.name}</option>
+                            `
+                        }).join("");
+
+                        console.log(htmlOptions)
+                        $("#type-edit").html(htmlOptions);
+                    }
+                }
+            )
+        }
+    });
+}
+function backtoListCustomers(){
+    window.location.href = 'Ajax1.html';
 }

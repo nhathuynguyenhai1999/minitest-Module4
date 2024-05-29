@@ -1,6 +1,5 @@
 package cg.codegym.minitest.Controller.API;
 
-import cg.codegym.minitest.Model.Computer;
 import cg.codegym.minitest.Model.Type;
 import cg.codegym.minitest.Service.iml.ITypeService;
 import org.springframework.beans.factory.annotation.Autowired;
