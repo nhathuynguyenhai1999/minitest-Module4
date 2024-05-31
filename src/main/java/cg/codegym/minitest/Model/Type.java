@@ -15,6 +15,9 @@ public class Type {
     public Type() {
     }
 
+    public Type(long l, String roleAdmin) {
+    }
+
     public Long getId() {
         return id;
     }

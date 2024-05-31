@@ -3,6 +3,7 @@ package cg.codegym.minitest.Model;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
+import java.util.Set;
 
 @Entity
 @Table(name = "computer")
@@ -20,7 +21,11 @@ public class Computer {
     @JoinColumn(name = "type_id")
     private Type type;
 
+
     public Computer() {
+    }
+
+    public Computer(long l, String kai, String password) {
     }
 
     public Long getId() {
@@ -54,4 +59,5 @@ public class Computer {
     public void setType(Type type) {
         this.type = type;
     }
+
 }
