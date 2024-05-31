@@ -1,6 +1,9 @@
-package cg.codegym.minitest.jwt;
+package cg.codegym.minitest.Configuration;
 
 import cg.codegym.minitest.Service.iml.ComputerService1;
+import cg.codegym.minitest.jwt.CustomAccessDeniedHandler;
+import cg.codegym.minitest.jwt.JwtAuthenticationTokenFilter;
+import cg.codegym.minitest.jwt.RestAuthenticationEntryPoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
