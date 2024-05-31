@@ -44,7 +44,7 @@ public class ComputerJwtController {
     }
 
     /* ---------------- CREATE NEW COMPUTER ------------------------ */
-    @RequestMapping(value = "/users", method = RequestMethod.POST)
+    @RequestMapping(value = "/create-computers", method = RequestMethod.POST)
     public ResponseEntity<String> createUser(@RequestBody Computer user) {
         if (computerService1.add(user)) {
             return new ResponseEntity<>("Created!", HttpStatus.CREATED);
