@@ -61,7 +61,7 @@ public class ComputerJwtController {
     }
 
     /* ---------------- LOGIN ------------------------ */
-    @PostMapping("/computers/login")
+    @PostMapping("/computers1/login")
     public ResponseEntity<?> login(@RequestBody ComputerDTO computerDTO) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(computerDTO.getName(), computerDTO.getCode()));
