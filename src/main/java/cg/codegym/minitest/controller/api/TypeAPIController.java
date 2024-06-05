@@ -1,6 +1,6 @@
-package cg.codegym.minitest.Controller.API;
+package cg.codegym.minitest.controller.api;
 
-import cg.codegym.minitest.Model.Type;
+import cg.codegym.minitest.model.Type;
 import cg.codegym.minitest.Service.iml.ITypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
