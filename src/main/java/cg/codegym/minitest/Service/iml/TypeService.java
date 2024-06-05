@@ -1,7 +1,7 @@
 package cg.codegym.minitest.Service.iml;
 
-import cg.codegym.minitest.Model.Type;
-import cg.codegym.minitest.Repository.ITypeRepository;
+import cg.codegym.minitest.model.Type;
+import cg.codegym.minitest.repository.ITypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package cg.codegym.minitest.Model;
+package cg.codegym.minitest.model;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package cg.codegym.minitest.Exception;
+package cg.codegym.minitest.exception;
 
 public class DuplicateEmailException extends Exception {
     public DuplicateEmailException(){}

@@ -1,8 +1,8 @@
 package cg.codegym.minitest.Service.iml;
 
-import cg.codegym.minitest.Model.Computer;
-import cg.codegym.minitest.Model.Type;
-import cg.codegym.minitest.Repository.IComputerRepository;
+import cg.codegym.minitest.model.Computer;
+import cg.codegym.minitest.model.Type;
+import cg.codegym.minitest.repository.IComputerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

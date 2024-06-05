@@ -1,7 +1,7 @@
-package cg.codegym.minitest.Controller;
+package cg.codegym.minitest.controller;
 
-import cg.codegym.minitest.Model.Computer;
-import cg.codegym.minitest.Model.ComputerSessionCookie;
+import cg.codegym.minitest.model.Computer;
+import cg.codegym.minitest.model.ComputerSessionCookie;
 import cg.codegym.minitest.Service.iml.IComputerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

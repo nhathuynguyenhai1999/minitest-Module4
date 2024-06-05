@@ -1,10 +1,8 @@
-package cg.codegym.minitest.Model;
+package cg.codegym.minitest.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
-import java.util.HashMap;
-import java.util.Map;
 
 @Entity
 @Table(name = "computer")

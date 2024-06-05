@@ -1,6 +1,6 @@
-package cg.codegym.minitest.Formatter;
+package cg.codegym.minitest.formatter;
 
-import cg.codegym.minitest.Model.Type;
+import cg.codegym.minitest.model.Type;
 import cg.codegym.minitest.Service.iml.ITypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.Formatter;
