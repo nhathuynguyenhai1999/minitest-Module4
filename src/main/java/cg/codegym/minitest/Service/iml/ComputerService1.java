@@ -1,8 +1,8 @@
 package cg.codegym.minitest.Service.iml;
 
-import cg.codegym.minitest.Model.Computer;
-import cg.codegym.minitest.Model.Type;
-import cg.codegym.minitest.Model.dto.ComputerDTO;
+import cg.codegym.minitest.model.Computer;
+import cg.codegym.minitest.model.Type;
+import cg.codegym.minitest.model.dto.ComputerDTO;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;

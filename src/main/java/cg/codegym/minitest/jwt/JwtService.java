@@ -1,6 +1,6 @@
 package cg.codegym.minitest.jwt;
 
-import cg.codegym.minitest.Model.ComputerPrinciple;
+import cg.codegym.minitest.model.ComputerPrinciple;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;

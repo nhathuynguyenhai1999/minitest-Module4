@@ -1,15 +1,17 @@
-package cg.codegym.minitest.Service.iml;
+package cg.codegym.minitest.repository;
 
 import cg.codegym.minitest.model.Computer;
 import cg.codegym.minitest.model.Type;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.CrudRepository;
 
-public interface IComputerService extends IGenerateService<Computer> {
+public interface IComputerRepository extends CrudRepository<Computer,Long> {
     Iterable<Computer> findAllByType(Type type);
+
     Page<Computer> findAll(Pageable pageable);
-    Computer findOne(Long id) throws Exception;
+
     Page<Computer> findAllByNameContaining(Pageable pageable, String name);
-    //fix
-    Computer findByID(Long id);
+
+    boolean existsByCode(String code);
 }
