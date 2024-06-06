@@ -1,4 +1,4 @@
-package cg.codegym.minitest.Logger;
+package cg.codegym.minitest.logger;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterThrowing;
@@ -10,13 +10,13 @@ import java.util.Arrays;
 @Aspect
 @Component
 public class Logger {
-    @AfterThrowing(pointcut = "execution(public * cg.codegym.minitest.Repository.IComputerRepository.findAll(..))",
+    @AfterThrowing(pointcut = "execution(public * cg.codegym.minitest.repository.IComputerRepository.findAll(..))",
             throwing = "e")
     public void logMethod(Exception e){
         System.out.println("[CMS] co loi xay ra: " + e.getMessage());
     }
     @AfterThrowing(
-            pointcut = "execution(public * cg.codegym.minitest.Repository.IComputerRepository.*(..))",
+            pointcut = "execution(public * cg.codegym.minitest.repository.IComputerRepository.*(..))",
             throwing = "e"
     )
     public void logClass(JoinPoint joinPoint, Exception e) {

@@ -1,7 +1,7 @@
-package cg.codegym.minitest.Controller;
+package cg.codegym.minitest.controller;
 
-import cg.codegym.minitest.Model.Computer;
-import cg.codegym.minitest.Model.Type;
+import cg.codegym.minitest.model.Computer;
+import cg.codegym.minitest.model.Type;
 import cg.codegym.minitest.Service.iml.IComputerService;
 import cg.codegym.minitest.Service.iml.ITypeService;
 import org.springframework.beans.factory.annotation.Autowired;
