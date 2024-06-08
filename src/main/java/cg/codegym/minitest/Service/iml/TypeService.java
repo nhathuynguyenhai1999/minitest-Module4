@@ -18,8 +18,8 @@ public class TypeService implements ITypeService {
     }
 
     @Override
-    public void save(Type province) {
-        iTypeRepository.save(province);
+    public Type save(Type province) {
+        return iTypeRepository.save(province);
     }
 
     @Override

@@ -22,30 +22,91 @@ tasks.withType(JavaCompile).configureEach {
 }
 
 dependencies {
+
     compileOnly('javax.servlet:javax.servlet-api:4.0.1')
     // https://mvnrepository.com/artifact/org.springframework/spring-webmvc
     implementation group: 'org.springframework', name: 'spring-webmvc', version: '5.3.23'
-
     // https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf-spring5
     implementation group: 'org.thymeleaf', name: 'thymeleaf-spring5', version: '3.1.1.RELEASE'
     // https://mvnrepository.com/artifact/nz.net.ultraq.thymeleaf/thymeleaf-layout-dialect
     implementation group: 'nz.net.ultraq.thymeleaf', name: 'thymeleaf-layout-dialect', version: '3.1.0'
-
     // https://mvnrepository.com/artifact/mysql/mysql-connector-java
     implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.30'
     // https://mvnrepository.com/artifact/org.hibernate/hibernate-core
     implementation group: 'org.hibernate', name: 'hibernate-core', version: '5.6.10.Final'
-
     implementation group: 'org.springframework.data', name: 'spring-data-jpa', version: '2.7.0'
-
     // https://mvnrepository.com/artifact/javax.validation/validation-api
     implementation group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
     // https://mvnrepository.com/artifact/org.hibernate/hibernate-validator
     implementation group: 'org.hibernate', name: 'hibernate-validator', version: '6.0.10.Final'
+<<<<<<< HEAD
 
     implementation group: 'org.springframework', name: 'spring-aspects', version: '5.3.20'
+=======
+    implementation group: 'org.springframework', name: 'spring-aspects', version: '5.3.20'
+    // thêm api cho nó bởi đây
+    // https://mvnrepository.com/artifact/org.springframework/spring-tx
+    implementation group: 'org.springframework', name: 'spring-tx', version: '5.3.23'
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.14.2'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.13.2'
+    // https://mvnrepository.com/artifact/org.springframework.security/spring-security-web
+    implementation group: 'org.springframework.security', name: 'spring-security-web', version: '5.8.0'
+// https://mvnrepository.com/artifact/org.springframework.security/spring-security-config
+    implementation group: 'org.springframework.security', name: 'spring-security-config', version: '5.8.0'
+// https://mvnrepository.com/artifact/org.springframework.security/spring-security-taglibs
+    implementation group: 'org.springframework.security', name: 'spring-security-taglibs', version: '5.8.0'
+    // https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-springsecurity5
+    implementation group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-springsecurity5', version: '3.1.0.RELEASE'
+>>>>>>> 404d9f63b1b34977ed6bd2e2e227f20c3582c821
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+
+    /*
+    // Servlet API
+    compileOnly 'javax.servlet:javax.servlet-api:4.0.1'
+
+    // Spring Web MVC
+    implementation 'org.springframework:spring-webmvc:5.3.23'
+
+    // Thymeleaf with Spring integration
+    implementation 'org.thymeleaf:thymeleaf-spring5:3.1.1.RELEASE'
+    implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:3.1.0'
+
+    // MySQL Connector
+    implementation 'mysql:mysql-connector-java:8.0.30'
+
+    // Hibernate Core
+    implementation 'org.hibernate:hibernate-core:5.6.10.Final'
+
+    // Spring Data JPA
+    implementation 'org.springframework.data:spring-data-jpa:2.7.0'
+
+    // Bean Validation API and Hibernate Validator
+    implementation 'javax.validation:validation-api:2.0.1.Final'
+    implementation 'org.hibernate:hibernate-validator:6.0.10.Final'
+
+    // Spring Aspects
+    implementation 'org.springframework:spring-aspects:5.3.20'
+
+    // Spring Transaction Management
+    implementation 'org.springframework:spring-tx:5.3.23'
+
+    // Jackson for JSON processing
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.2'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.13.2'
+
+    // Spring Security
+    implementation 'org.springframework.security:spring-security-web:5.8.0'
+    implementation 'org.springframework.security:spring-security-config:5.8.0'
+    implementation 'org.springframework.security:spring-security-taglibs:5.8.0'
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5:3.1.0.RELEASE'
+
+    // JUnit for testing
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+
+     */
 }
 
 test {

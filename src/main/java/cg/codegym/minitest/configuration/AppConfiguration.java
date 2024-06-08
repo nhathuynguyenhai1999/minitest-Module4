@@ -1,6 +1,11 @@
 package cg.codegym.minitest.configuration;
+<<<<<<< HEAD
 import cg.codegym.minitest.formatter.TypeFormatter;
+=======
+
+>>>>>>> 404d9f63b1b34977ed6bd2e2e227f20c3582c821
 import cg.codegym.minitest.Service.iml.TypeService;
+import cg.codegym.minitest.formatter.TypeFormatter;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
@@ -9,6 +14,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
@@ -27,6 +33,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
+import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
@@ -44,6 +51,7 @@ import java.util.Properties;
 @EnableTransactionManagement
 @EnableJpaRepositories("cg.codegym.minitest.repository")
 @EnableSpringDataWebSupport
+@EnableAspectJAutoProxy
 public class AppConfiguration implements WebMvcConfigurer,ApplicationContextAware {
     private ApplicationContext applicationContext;
     @Override
@@ -65,6 +73,7 @@ public class AppConfiguration implements WebMvcConfigurer,ApplicationContextAwar
     public SpringTemplateEngine templateEngine() {
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
         templateEngine.setTemplateResolver(templateResolver());
+        templateEngine.addDialect(new SpringSecurityDialect());
         return templateEngine;
     }
     @Bean
@@ -144,6 +153,21 @@ public class AppConfiguration implements WebMvcConfigurer,ApplicationContextAwar
         messageSource.setBasenames("validation-message");
         return messageSource;
     }
+
+    /*
+    @Bean
+    public WebMvcConfigurer corsConfigurer(){
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry){
+                registry.addMapping("/api/**")
+                        .allowedOrigins("http://localhost:63343")
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS");
+            }
+        };
+    }
+
+     */
 
 
     @Override

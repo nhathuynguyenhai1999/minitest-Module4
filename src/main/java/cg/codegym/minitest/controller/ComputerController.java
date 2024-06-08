@@ -1,5 +1,9 @@
 package cg.codegym.minitest.controller;
 
+<<<<<<< HEAD
+=======
+import cg.codegym.minitest.exception.DuplicateProductCodeException;
+>>>>>>> 404d9f63b1b34977ed6bd2e2e227f20c3582c821
 import cg.codegym.minitest.model.Computer;
 import cg.codegym.minitest.model.Type;
 import cg.codegym.minitest.Service.iml.ComputerService;
@@ -37,6 +41,7 @@ public class ComputerController {
         return typeService.findAll();
     }
 
+    /*
     @GetMapping
     public ModelAndView listComputer(@RequestParam(defaultValue = "0") int page) {
         Pageable pageable = PageRequest.of(page,3);
@@ -45,6 +50,36 @@ public class ComputerController {
         modelAndView.addObject("computers", customers);
         return modelAndView;
     }
+
+     */
+    @GetMapping
+    public ModelAndView listComputer(@RequestParam(defaultValue = "0") int page) {
+        ModelAndView modelAndView = new ModelAndView("/computer/list");
+        try {
+            Pageable pageable = PageRequest.of(page, 3);
+            Page<Computer> customers = computerService.findAll(pageable);
+            modelAndView.addObject("computers", customers);
+        } catch (Exception e) {
+            modelAndView.addObject("error", "An error occurred while retrieving the list of computers.");
+            // You can also log the error if needed
+            // logger.error("Error occurred while listing computers", e);
+        }
+        return modelAndView;
+    }
+    @GetMapping("/{id}")
+    public ModelAndView showInformation(@PathVariable Long id){
+        try {
+            ModelAndView modelAndView = new ModelAndView("/computer/info");
+            Computer computer = computerService.findOne(id);
+            return modelAndView;
+        }
+        catch(Exception e){
+            return new ModelAndView("redirect:/computers");
+        }
+    }
+// add aop 2:50 PM 24 - 05 - 2024
+
+
     @GetMapping("/search")
     public ModelAndView listComputersSearch(@RequestParam("search") Optional<String> search, Pageable pageable){
         Page<Computer> customers;
@@ -112,5 +147,9 @@ public class ComputerController {
         computerService.remove(id);
         redirect.addFlashAttribute("message", "Delete computer successfully");
         return "redirect:/computers";
+    }
+    @ExceptionHandler(DuplicateProductCodeException.class)
+    public ModelAndView showInputNotAcceptable() {
+        return new ModelAndView("/duplicate-code");
     }
 }
