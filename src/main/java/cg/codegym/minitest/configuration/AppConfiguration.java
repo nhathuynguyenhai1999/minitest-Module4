@@ -108,7 +108,7 @@ public class AppConfiguration implements WebMvcConfigurer,ApplicationContextAwar
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPackagesToScan("cg.codegym.minitest.Model");
+        em.setPackagesToScan("cg.codegym.minitest.model");
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
