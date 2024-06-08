@@ -1,5 +1,5 @@
-package cg.codegym.minitest.Configuration;
-import cg.codegym.minitest.Formatter.TypeFormatter;
+package cg.codegym.minitest.configuration;
+import cg.codegym.minitest.formatter.TypeFormatter;
 import cg.codegym.minitest.Service.iml.TypeService;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -42,7 +42,7 @@ import java.util.Properties;
 @EnableWebMvc
 @ComponentScan("cg.codegym.minitest")
 @EnableTransactionManagement
-@EnableJpaRepositories("cg.codegym.minitest.Repository")
+@EnableJpaRepositories("cg.codegym.minitest.repository")
 @EnableSpringDataWebSupport
 public class AppConfiguration implements WebMvcConfigurer,ApplicationContextAware {
     private ApplicationContext applicationContext;
@@ -108,7 +108,7 @@ public class AppConfiguration implements WebMvcConfigurer,ApplicationContextAwar
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPackagesToScan("cg.codegym.minitest.Model");
+        em.setPackagesToScan("cg.codegym.minitest.model");
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
