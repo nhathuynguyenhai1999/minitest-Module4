@@ -1,4 +1,4 @@
-package cg.codegym.minitest.Configuration;
+package cg.codegym.minitest.configuration;
 
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

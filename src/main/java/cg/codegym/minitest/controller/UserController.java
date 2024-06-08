@@ -1,4 +1,4 @@
-package cg.codegym.minitest.Controller;
+package cg.codegym.minitest.controller;
 
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;

@@ -1,6 +1,6 @@
-package cg.codegym.minitest.Controller.API;
+package cg.codegym.minitest.controller.API;
 
-import cg.codegym.minitest.Model.Computer;
+import cg.codegym.minitest.model.Computer;
 import cg.codegym.minitest.Service.iml.IComputerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

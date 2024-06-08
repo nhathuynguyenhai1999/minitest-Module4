@@ -1,5 +1,5 @@
-package cg.codegym.minitest.Configuration;
-import cg.codegym.minitest.Formatter.TypeFormatter;
+package cg.codegym.minitest.configuration;
+import cg.codegym.minitest.formatter.TypeFormatter;
 import cg.codegym.minitest.Service.iml.TypeService;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -23,7 +23,6 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.LocaleResolver;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -45,7 +44,7 @@ import java.util.Properties;
 @EnableWebMvc
 @ComponentScan("cg.codegym.minitest")
 @EnableTransactionManagement
-@EnableJpaRepositories("cg.codegym.minitest.Repository")
+@EnableJpaRepositories("cg.codegym.minitest.repository")
 @EnableSpringDataWebSupport
 @EnableAspectJAutoProxy
 public class AppConfiguration implements WebMvcConfigurer,ApplicationContextAware {
@@ -113,7 +112,8 @@ public class AppConfiguration implements WebMvcConfigurer,ApplicationContextAwar
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPackagesToScan("cg.codegym.minitest.Model");
+        em.setPackagesToScan("cg.codegym.minitest.m" +
+                "odel");
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);

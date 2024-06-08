@@ -1,4 +1,4 @@
-package cg.codegym.minitest.Configuration;
+package cg.codegym.minitest.configuration;
 
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 
