@@ -1,9 +1,5 @@
 package cg.codegym.minitest.configuration;
-<<<<<<< HEAD
 import cg.codegym.minitest.formatter.TypeFormatter;
-=======
-
->>>>>>> 404d9f63b1b34977ed6bd2e2e227f20c3582c821
 import cg.codegym.minitest.Service.iml.TypeService;
 import cg.codegym.minitest.formatter.TypeFormatter;
 import org.springframework.beans.BeansException;
