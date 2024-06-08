@@ -8,7 +8,7 @@ function loadCustomers() {
         type: "GET",
         url: "http://localhost:8080/api/computers",
         success: function(data) {
-            let content = '<table id="display-list" border="1"><tr>' +
+            let content = '<table id="display-list" class="table table-bordered"><tr>' +
                 '<th>Name</th>' +
                 '<th>Code</th>' +
                 '<th>Type</th>' +
@@ -33,23 +33,19 @@ function loadTypes() {
         type: "GET",
         url: "http://localhost:8080/api/types",
         success: function(data) {
-            // Create a select element
             const selectElement = document.createElement('select');
             selectElement.id = 'type';
             selectElement.name = 'type';
+            selectElement.className = 'form-control';
 
-            // Populate the select element with options
             for (let i = 0; i < data.length; i++) {
                 const optionElement = document.createElement('option');
-                optionElement.value = data[i].id; // Assuming 'id' is the value you want to use
-                optionElement.textContent = data[i].name; // Assuming 'name' is the text you want to show
+                optionElement.value = data[i].id;
+                optionElement.textContent = data[i].name;
                 selectElement.appendChild(optionElement);
             }
 
-            // Get the input element
             const inputElement = document.getElementById('type');
-
-            // Replace the input element with the select element
             inputElement.parentNode.replaceChild(selectElement, inputElement);
         },
         error: function(error) {
@@ -58,27 +54,22 @@ function loadTypes() {
     });
 }
 
-// Call the function to update the input to select
-loadTypes();
-
 function getProduct(customer) {
     return `<tr>
-        <td>${customer.name}</td>
-        <td>${customer.code}</td>
-        <td>${customer.type.name}</td>
-        <td><button class="updateSmartphone" onclick="formEdit(${customer.id})">Update</button></td>
-        <td><button class="deleteSmartphone" onclick="deleteCustomer(${customer.id})">Delete</button></td>
-    </tr>`;
+            <td>${customer.name}</td>
+            <td>${customer.code}</td>
+            <td>${customer.type.name}</td>
+            <td><button class="btn btn-warning" onclick="formEdit(${customer.id})">Update</button></td>
+            <td><button class="btn btn-danger" onclick="deleteCustomer(${customer.id})">Delete</button></td>
+        </tr>`;
 }
 
 function addNewCustomer(event) {
-    // event.preventDefault();
+    event.preventDefault();
     let name = $('#name').val();
     let code = $('#code').val();
     let typeId = $('#type').val();
-    let newCustomer = { "code": code, "name":  name, "type": {
-            "id": typeId
-        } };
+    let newCustomer = { "code": code, "name":  name, "type": { "id": typeId } };
 
     $.ajax({
         headers: {
@@ -117,9 +108,7 @@ function updateCustomer(event, id) {
     let name = $('#name-edit').val();
     let code = $('#code-edit').val();
     let type = $('#type-edit').val();
-    let updatedCustomer = { "code": code, "name":  name, "type": {
-            "id": type
-        } };
+    let updatedCustomer = { "code": code, "name":  name, "type": { "id": type } };
 
     $.ajax({
         headers: {
@@ -136,23 +125,23 @@ function updateCustomer(event, id) {
 function getCustomerById(customer) {
     return `<tr>
             <td><label for="name-edit">Name:</label></td>
-            <td><input type="text" id="name-edit" value="${customer.name}"></td>
+            <td><input type="text" id="name-edit" class="form-control" value="${customer.name}"></td>
         </tr>
         <tr>
             <td><label for="code-edit">Code:</label></td>
-            <td><input type="text" id="code-edit" value="${customer.code}"></td>
+            <td><input type="text" id="code-edit" class="form-control" value="${customer.code}"></td>
         </tr>
         <tr>
-            <td><label for="type">Type:</label></td>
-            <td><select id="type-edit" name="types"></select></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td><input type="submit" value="Edit"></td>
+            <td><label for="type-edit">Type:</label></td>
+            <td><select id="type-edit" class="form-control" name="types"></select></td>
         </tr>
         <tr>
             <td></td>
-            <td><input type="submit" value="Cancel" id="back" onclick="backtoListCustomers()"></td>        
+            <td><button type="submit" class="btn btn-primary">Edit</button></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><button type="button" class="btn btn-secondary" onclick="backtoListCustomers()">Cancel</button></td>
         </tr>`;
 }
 
@@ -161,10 +150,9 @@ function formEdit(id) {
         type: "GET",
         url: `http://localhost:8080/api/computers/${id}`,
         success: function(data) {
-
             let contentData = '<form id="edit-customer" onsubmit="updateCustomer(event, ' + id + ')">' +
                 '<h1>Form edit</h1>' +
-                '<table>';
+                '<table class="table">';
             contentData += getCustomerById(data);
             contentData += '</table></form>';
             $('#edit-customer-1').html(contentData);
@@ -175,23 +163,20 @@ function formEdit(id) {
             $('#edit-customers').show();
 
             $.ajax({
-                    type: "GET",
-                    url: "http://localhost:8080/api/types",
-                    success: function (types) {
-                        let htmlOptions = types.map((type)=>{
-                            return `
-                                <option value="${type.id}" ${data.type.id === type.id ? "selected" : ""}>${type.name}</option>
-                            `
-                        }).join("");
+                type: "GET",
+                url: "http://localhost:8080/api/types",
+                success: function(types) {
+                    let htmlOptions = types.map((type) => {
+                        return `<option value="${type.id}" ${data.type.id === type.id ? "selected" : ""}>${type.name}</option>`;
+                    }).join("");
 
-                        console.log(htmlOptions)
-                        $("#type-edit").html(htmlOptions);
-                    }
+                    $("#type-edit").html(htmlOptions);
                 }
-            )
+            });
         }
     });
 }
-function backtoListCustomers(){
-    window.location.href = 'Ajax1.html';
+
+function backtoListCustomers() {
+    window.location.href = 'Ajax2.html';
 }
