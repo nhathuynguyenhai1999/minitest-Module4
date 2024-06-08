@@ -1,6 +1,7 @@
 package cg.codegym.minitest.configuration;
-import cg.codegym.minitest.formatter.TypeFormatter;
+
 import cg.codegym.minitest.Service.iml.TypeService;
+import cg.codegym.minitest.formatter.TypeFormatter;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
@@ -112,8 +113,7 @@ public class AppConfiguration implements WebMvcConfigurer,ApplicationContextAwar
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPackagesToScan("cg.codegym.minitest.m" +
-                "odel");
+        em.setPackagesToScan("cg.codegym.minitest.model");
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);

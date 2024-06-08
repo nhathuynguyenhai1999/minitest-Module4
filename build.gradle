@@ -22,7 +22,7 @@ tasks.withType(JavaCompile).configureEach {
 }
 
 dependencies {
-    /*
+
     compileOnly('javax.servlet:javax.servlet-api:4.0.1')
     // https://mvnrepository.com/artifact/org.springframework/spring-webmvc
     implementation group: 'org.springframework', name: 'spring-webmvc', version: '5.3.23'
@@ -57,7 +57,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 
-     */
+    /*
     // Servlet API
     compileOnly 'javax.servlet:javax.servlet-api:4.0.1'
 
@@ -100,6 +100,8 @@ dependencies {
     // JUnit for testing
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+
+     */
 }
 
 test {
