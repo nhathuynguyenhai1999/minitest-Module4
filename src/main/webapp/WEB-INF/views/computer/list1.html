@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="/layout :: head">
+    <meta charset="UTF-8">
+    <title>Cart Computer List | Session Cookie for Nhat Huy Chaien Nguyen | Java Web Backend Developemt and Spring MVC</title>
+</head>
+<body>
+    <p>
+        <a href="/computers1/shopping-cart">Your Cart</a>
+    </p>
+    <table id="customers" border="1">
+        <thead>
+        <tr>
+            <td>STT</td>
+            <td>Code</td>
+            <td>Name</td>
+            <td>Type</td>
+            <td>Add to cart</td>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="cart,cStatus : ${computers11}">
+            <td th:text="${cart.getId()}"></td>
+            <td th:text="${cart.getCode()}"></td>
+            <td th:text="${cart.getName()}"></td>
+            <td th:text="${cart.getType().getName()}"></td>
+            <td><a th:href="@{/computers1/add/__${cart.id}__(action='/computer/list1')}">Add To Cart</a></td>
+        </th:block>
+        </tbody>
+    </table>
+    <footer th:replace="/layout :: footer"></footer>
+</body>
+</html>

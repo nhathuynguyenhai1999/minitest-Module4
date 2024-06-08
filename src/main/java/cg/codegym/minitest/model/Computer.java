@@ -7,6 +7,7 @@ import javax.validation.constraints.Pattern;
 @Entity
 @Table(name = "computer")
 public class Computer {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
