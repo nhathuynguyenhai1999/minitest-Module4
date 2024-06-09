@@ -39,10 +39,8 @@ dependencies {
     implementation group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
     // https://mvnrepository.com/artifact/org.hibernate/hibernate-validator
     implementation group: 'org.hibernate', name: 'hibernate-validator', version: '6.0.10.Final'
-<<<<<<< HEAD
 
     implementation group: 'org.springframework', name: 'spring-aspects', version: '5.3.20'
-=======
     implementation group: 'org.springframework', name: 'spring-aspects', version: '5.3.20'
     // thêm api cho nó bởi đây
     // https://mvnrepository.com/artifact/org.springframework/spring-tx
@@ -58,7 +56,6 @@ dependencies {
     implementation group: 'org.springframework.security', name: 'spring-security-taglibs', version: '5.8.0'
     // https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-springsecurity5
     implementation group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-springsecurity5', version: '3.1.0.RELEASE'
->>>>>>> 404d9f63b1b34977ed6bd2e2e227f20c3582c821
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 
